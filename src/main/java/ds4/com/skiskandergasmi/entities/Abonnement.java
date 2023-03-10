@@ -1,0 +1,16 @@
+package ds4.com.skiskandergasmi.entities;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+@Entity
+public class Abonnement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long numAbon;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
+    private float prixAbon;
+    @Enumerated(EnumType.STRING)
+    private TypeAbonnement typeAbon;
+
+}
