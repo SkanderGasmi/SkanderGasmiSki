@@ -1,26 +1,32 @@
 package ds4.com.skiskandergasmi.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cours {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) /*Ki ykoli données auto incremented mel base*/
-    private long numCours;
-    @Column /* nzidou controle espace ou nhotou li nhebou alih bech nbadlou fel table esmou*/
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private long numCours;
+
     private int niveau;
-    @Enumerated(EnumType.STRING)
-    private TypeCours typeCours;
-    @Enumerated(EnumType.STRING)
-    private Support support;
+
     private float prix;
     private int creneau;
+@Enumerated(EnumType.STRING)
+    private TypeCours typeCours;
+    @Enumerated(EnumType.ORDINAL)
 
-    @Transient /* Mankhalihech todhher fel base*/
-    private  int sc;
-
+    private Support support;
     @OneToMany(mappedBy = "cours")
     private List<Inscription> inscriptions;
 }

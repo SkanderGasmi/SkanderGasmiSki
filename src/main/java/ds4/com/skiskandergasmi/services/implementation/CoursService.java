@@ -1,7 +1,8 @@
-package ds4.com.skiskandergasmi.services;
+package ds4.com.skiskandergasmi.services.implementation;
 
 import ds4.com.skiskandergasmi.entities.Cours;
 import ds4.com.skiskandergasmi.repositories.ICoursRepository;
+import ds4.com.skiskandergasmi.services.interfaces.ICoursService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class CoursService implements ICoursService {
     ICoursRepository CoursRepository;
 
     @Override
-    public List<Cours> retrieveAllCourss() {
+    public List<Cours> retrieveAllCourses() {
         return CoursRepository.findAll();
     }
 

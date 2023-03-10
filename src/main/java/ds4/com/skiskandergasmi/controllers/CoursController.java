@@ -1,45 +1,33 @@
 package ds4.com.skiskandergasmi.controllers;
-
 import ds4.com.skiskandergasmi.entities.Cours;
-import ds4.com.skiskandergasmi.services.ICoursService;
+import ds4.com.skiskandergasmi.services.interfaces.ICoursService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-@RequestMapping("/Cours")
 @RestController
+@RequestMapping("/cours")
 public class CoursController {
     @Autowired
     ICoursService coursService;
-
     @GetMapping
-    public List<Cours> getAll()
-    {
-        return coursService.retrieveAllCourss();
+    public List<Cours> getAll(){
+        return coursService.retrieveAllCourses();
     }
-
     @PostMapping
-    public Cours addCours(@RequestBody Cours Cours)
-    {
-        return coursService.addCours(Cours);
+    public  Cours addCours(@RequestBody Cours cours){
+       return coursService.addCours(cours);
     }
-    @PutMapping
-    public Cours updateCours(@RequestBody Cours Cours)
-    {
-        return coursService.updateCours(Cours);
+    @DeleteMapping("{numCours}")
+    public  void deleteCours(@PathVariable Long numCours){coursService.removeCours(numCours);
     }
-
-    @DeleteMapping("{id}")
-    //    public void deleteCours(@PathVariable(name = "id") Long num)
-    public void deleteCours(@PathVariable Long id)
-    {
-        coursService.removeCours(id);
-    }
-    @GetMapping("{id}")
-    public Cours retrieveCours(@PathVariable Long id)
-    {
-        return coursService.retrieveCours(id);
-    }
+@PutMapping
+    public Cours updateCours(@RequestBody Cours cours){
+        return coursService.updateCours(cours);
+}
+@GetMapping("{numCours}")
+public Cours retrieveCours (@PathVariable Long numCours){
+      return  coursService.retrieveCours(numCours);
+}
 
 }

@@ -1,7 +1,8 @@
-package ds4.com.skiskandergasmi.services;
+package ds4.com.skiskandergasmi.services.implementation;
 
 import ds4.com.skiskandergasmi.entities.Inscription;
 import ds4.com.skiskandergasmi.repositories.IInscriptionRepository;
+import ds4.com.skiskandergasmi.services.interfaces.IInscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class InscriptionService implements IInscriptionService {
     IInscriptionRepository inscriptionRepository;
 
     @Override
-    public List<Inscription> retrieveAllInscriptions() {
+    public List<Inscription> retrieveAllInscription() {
         return inscriptionRepository.findAll();
     }
 
@@ -30,12 +31,17 @@ public class InscriptionService implements IInscriptionService {
     }
 
     @Override
-    public Inscription removeInscription(Long id) {
-        return null;
+    public void removeInscription(Long id) {
     }
 
     @Override
     public Inscription retrieveInscription(Long numInscription) {
-        return null;
+        return inscriptionRepository.findById(numInscription).orElse(null);
+
     }
 }
+
+
+
+
+

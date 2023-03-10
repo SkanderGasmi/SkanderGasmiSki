@@ -1,45 +1,49 @@
 package ds4.com.skiskandergasmi.controllers;
 
 import ds4.com.skiskandergasmi.entities.Piste;
-import ds4.com.skiskandergasmi.services.IPisteService;
+import ds4.com.skiskandergasmi.services.interfaces.IPisteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-@RequestMapping("/Piste")
-@RestController
-public class PisteController {
-    @Autowired
-    IPisteService pisteService;
 
+@RestController
+@RequestMapping("piste")
+public class PisteController {
+
+    @Autowired
+    IPisteService iPisteService;
     @GetMapping
-    public List<Piste> getAll()
-    {
-        return pisteService.retrieveAllPistes();
+    public List<Piste> getAll(){
+        return iPisteService.retrieveAllPistes();
+
     }
 
+    @GetMapping("{numPiste}")
+
+    public Optional<Piste> retrievePiste(@PathVariable Long numPiste) {
+
+        return  iPisteService.retrievePiste(numPiste);
+
+    }
     @PostMapping
-    public Piste addPiste(@RequestBody Piste piste)
-    {
-        return pisteService.addPiste(piste);
+
+    public Piste addPiste(@RequestBody Piste piste){
+
+        return iPisteService.addPiste(piste);
+    }
+
+    @DeleteMapping("{numpiste}")
+    public void removePiste(@PathVariable Long numpiste){
+
+        iPisteService.removePiste(numpiste);
     }
     @PutMapping
-    public Piste updatePiste(@RequestBody Piste piste)
-    {
-        return pisteService.updatePiste(piste);
-    }
+    public Piste updatePiste(@RequestBody Piste Piste) {
 
-    @DeleteMapping("{id}")
-    //    public void deletePiste(@PathVariable(name = "id") Long num)
-    public void deletePiste(@PathVariable Long id)
-    {
-        pisteService.removePiste(id);
-    }
-    @GetMapping("{id}")
-    public Piste retrievePiste(@PathVariable Long id)
-    {
-        return pisteService.retrievePiste(id);
+        return  iPisteService.updatePiste(Piste);
+
     }
 
 }

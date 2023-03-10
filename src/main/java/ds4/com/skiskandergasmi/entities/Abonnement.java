@@ -1,16 +1,30 @@
 package ds4.com.skiskandergasmi.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Abonnement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long numAbon;
-    private LocalDate dateDebut;
-    private LocalDate dateFin;
-    private float prixAbon;
+    long numAbon;
+    LocalDate dateDebut;
+    LocalDate dateFin;
+    float prixAbon;
     @Enumerated(EnumType.STRING)
-    private TypeAbonnement typeAbon;
+
+    TypeAbonnement typeAbon;
+
+
 
 }

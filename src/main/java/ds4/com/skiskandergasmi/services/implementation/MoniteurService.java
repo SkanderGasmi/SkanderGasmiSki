@@ -1,7 +1,8 @@
-package ds4.com.skiskandergasmi.services;
+package ds4.com.skiskandergasmi.services.implementation;
 
 import ds4.com.skiskandergasmi.entities.Moniteur;
 import ds4.com.skiskandergasmi.repositories.IMoniteurRepository;
+import ds4.com.skiskandergasmi.services.interfaces.IMoniteurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

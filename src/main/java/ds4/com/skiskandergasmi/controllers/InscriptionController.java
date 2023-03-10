@@ -1,45 +1,46 @@
 package ds4.com.skiskandergasmi.controllers;
-
 import ds4.com.skiskandergasmi.entities.Inscription;
-import ds4.com.skiskandergasmi.services.IInscriptionService;
+import ds4.com.skiskandergasmi.services.interfaces.IInscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/Inscription")
 @RestController
+@RequestMapping("inscription")
+
 public class InscriptionController {
+
     @Autowired
-    IInscriptionService InscriptionService;
-
+    IInscriptionService inscriptionService;
     @GetMapping
-    public List<Inscription> getAll()
-    {
-        return InscriptionService.retrieveAllInscriptions();
-    }
+    public List<Inscription> getAll(){
+        return inscriptionService.retrieveAllInscription();
 
+    }
+    @GetMapping("{numInscription}")
+
+    public Inscription retrieveInscription(@PathVariable Long numInscription) {
+
+        return  inscriptionService.retrieveInscription(numInscription);
+
+    }
     @PostMapping
-    public Inscription addInscription(@RequestBody Inscription Inscription)
-    {
-        return InscriptionService.addInscription(Inscription);
+
+    public Inscription addInscription(@RequestBody Inscription inscription){
+
+        return inscriptionService.addInscription(inscription);
     }
+    @DeleteMapping("{numInscription}")
+    public void removeInscription(@PathVariable Long numInscription){
+
+        inscriptionService.removeInscription(numInscription);
+    }
+
     @PutMapping
-    public Inscription updateInscription(@RequestBody Inscription Inscription)
-    {
-        return InscriptionService.updateInscription(Inscription);
-    }
+    public Inscription updateInscription(@RequestBody Inscription inscription) {
 
-    @DeleteMapping("{id}")
-    //    public void deleteInscription(@PathVariable(name = "id") Long num)
-    public void deleteInscription(@PathVariable Long id)
-    {
-        InscriptionService.removeInscription(id);
-    }
-    @GetMapping("{id}")
-    public Inscription retrieveInscription(@PathVariable Long id)
-    {
-        return InscriptionService.retrieveInscription(id);
-    }
+        return  inscriptionService.updateInscription(inscription);
 
+    }
 }

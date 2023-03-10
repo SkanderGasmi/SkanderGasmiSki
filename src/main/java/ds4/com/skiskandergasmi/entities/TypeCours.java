@@ -1,8 +1,8 @@
 package ds4.com.skiskandergasmi.entities;
 
-public enum TypeCours {
+public enum TypeCours
+{
     COLLECTIF_ENFANT,
     COLLECTIF_ADULTE,
-    PARTICULIER,
-
+    PARTICULIER
 }

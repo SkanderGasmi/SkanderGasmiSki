@@ -1,7 +1,8 @@
-package ds4.com.skiskandergasmi.services;
+package ds4.com.skiskandergasmi.services.implementation;
 
 import ds4.com.skiskandergasmi.entities.Piste;
 import ds4.com.skiskandergasmi.repositories.IPisteRepository;
+import ds4.com.skiskandergasmi.services.interfaces.IPisteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -33,7 +34,7 @@ public class PisteService implements IPisteService {
         pisteRepository.deleteById(id);
     }
     @Override
-    public Piste retrievePiste(Long numPiste) {
-        return pisteRepository.findById(numPiste).orElse(null);
+    public Optional<Piste> retrievePiste(Long numPiste) {
+        return pisteRepository.findById(numPiste);
     }
 }
